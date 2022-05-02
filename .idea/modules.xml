@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/filesort/filesort.iml" filepath="$PROJECT_DIR$/filesort/filesort.iml" />
+      <module fileurl="file://$PROJECT_DIR$/filesort-gui.iml" filepath="$PROJECT_DIR$/filesort-gui.iml" />
+    </modules>
+  </component>
+</project>
