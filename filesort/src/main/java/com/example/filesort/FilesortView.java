@@ -6,9 +6,10 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
+import javafx.scene.paint.Paint;
 import javafx.scene.text.Font;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
@@ -38,6 +39,22 @@ public class FilesortView extends Application {
         textBlurb.getChildren().add(label);
 
         /**
+         * This component handles the checkbox option menu. It consists of multiple VBoxes inside of an HBox
+         */
+        HBox optionMenu = new HBox();
+        VBox lefCol = new VBox();
+        CheckBox daySort = new CheckBox("Day: YYYY/MM/DD");
+        CheckBox monthSort = new CheckBox("Month: YYYY/MM");
+        CheckBox yearSort = new CheckBox("Year: YYYY");
+        CheckBox filetypeSort = new CheckBox("Filetype: .png");
+        lefCol.getChildren().addAll(daySort, monthSort, yearSort, filetypeSort);
+        VBox rightCol = new VBox();
+
+        rightCol.getChildren().addAll();
+        optionMenu.getChildren().addAll(lefCol, rightCol);
+
+
+        /**
          * This component handles the buttons used for input and output directory selection
          */
         HBox dirChooseBox = new HBox();
@@ -64,9 +81,10 @@ public class FilesortView extends Application {
         dirChooseBox.getChildren().addAll(inputButton, outputButton);
         dirChooseBox.setMargin(inputButton, new Insets(20,20,20,20));
         dirChooseBox.setMargin(outputButton, new Insets(20,20,20,20));
+//        dirChooseBox.setBorder(new Border(new BorderStroke(Paint.valueOf("Black"), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, new BorderWidths(3))));
 
 //        Adds all necessary components to the vbox and finishes configuration
-        vBox.getChildren().addAll(textBlurb, dirChooseBox);
+        vBox.getChildren().addAll(textBlurb, optionMenu, dirChooseBox);
 
         vBox.setMargin(textBlurb, new Insets(30,30,30,30));
 
