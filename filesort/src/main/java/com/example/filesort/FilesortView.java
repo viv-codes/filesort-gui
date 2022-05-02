@@ -30,11 +30,12 @@ public class FilesortView extends Application {
          * This component is an Hbox used to hold any informational text and stuff at the top of the program, to fill space and serve as a reference
          */
         HBox textBlurb = new HBox();
-        Label label = new Label("Welcome to filesort-gui!\nEventually there will be helpful stuff here.");
+        Label label = new Label("Welcome to filesort-gui!");
         label.setFont(new Font(20));
         label.setAlignment(Pos.CENTER);
         label.setWrapText(true);
         textBlurb.getChildren().add(label);
+        textBlurb.setAlignment(Pos.CENTER);
 
         /**
          * This component handles the checkbox option menu. It consists of multiple VBoxes inside of an HBox
@@ -45,27 +46,31 @@ public class FilesortView extends Application {
         Label leftColLabel = new Label("Sort method:");
 
         final ToggleGroup group = new ToggleGroup();
-
         RadioButton rb1 = new RadioButton("Day: YYYY/MM/DD");
         rb1.setToggleGroup(group);
         rb1.setSelected(true);
-
         RadioButton rb2 = new RadioButton("Month: YYYY/MM");
         rb2.setToggleGroup(group);
-
         RadioButton rb3 = new RadioButton("Year: YYYY");
         rb3.setToggleGroup(group);
-
         RadioButton rb4 = new RadioButton("Filetype: .png");
         rb4.setToggleGroup(group);
-
 
         lefCol.getChildren().addAll(leftColLabel, rb1, rb2, rb3, rb4);
         VBox rightCol = new VBox();
 
-        rightCol.getChildren().addAll();
+        Label rightColLabel = new Label("Additional options:");
+        CheckBox verbose = new CheckBox("Verbose");
+        CheckBox excludeSym = new CheckBox("Exclude symlinks");
+        CheckBox onlyExtension = new CheckBox("Whitelist file extenison");
+
+        rightCol.getChildren().addAll(rightColLabel, verbose, excludeSym, onlyExtension);
         optionMenu.getChildren().addAll(lefCol, rightCol);
         optionMenu.setMargin(lefCol, new Insets(5,5,5,5));
+
+
+
+
 
 
 
@@ -99,7 +104,15 @@ public class FilesortView extends Application {
 //        dirChooseBox.setBorder(new Border(new BorderStroke(Paint.valueOf("Black"), BorderStrokeStyle.SOLID, CornerRadii.EMPTY, new BorderWidths(3))));
 
 //        Adds all necessary components to the vbox and finishes configuration
-        vBox.getChildren().addAll(textBlurb, optionMenu, dirChooseBox);
+
+        Label processProgresslabel = new Label("Total progress:");
+        ProgressBar processProgress = new ProgressBar();
+        processProgress.setPrefWidth(450);
+        Label copyProgressLabel = new Label("Process progress: "+"(1/2) Indexing input directory");
+        ProgressBar copyProgress = new ProgressBar();
+        copyProgress.setPrefWidth(450);
+
+        vBox.getChildren().addAll(textBlurb, optionMenu, dirChooseBox, processProgresslabel, processProgress, copyProgressLabel, copyProgress);
 
         vBox.setMargin(textBlurb, new Insets(30,30,30,30));
 
