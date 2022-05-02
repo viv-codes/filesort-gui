@@ -5,9 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.Label;
+import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Paint;
 import javafx.scene.text.Font;
@@ -43,15 +41,32 @@ public class FilesortView extends Application {
          */
         HBox optionMenu = new HBox();
         VBox lefCol = new VBox();
-        CheckBox daySort = new CheckBox("Day: YYYY/MM/DD");
-        CheckBox monthSort = new CheckBox("Month: YYYY/MM");
-        CheckBox yearSort = new CheckBox("Year: YYYY");
-        CheckBox filetypeSort = new CheckBox("Filetype: .png");
-        lefCol.getChildren().addAll(daySort, monthSort, yearSort, filetypeSort);
+
+        Label leftColLabel = new Label("Sort method:");
+
+        final ToggleGroup group = new ToggleGroup();
+
+        RadioButton rb1 = new RadioButton("Day: YYYY/MM/DD");
+        rb1.setToggleGroup(group);
+        rb1.setSelected(true);
+
+        RadioButton rb2 = new RadioButton("Month: YYYY/MM");
+        rb2.setToggleGroup(group);
+
+        RadioButton rb3 = new RadioButton("Year: YYYY");
+        rb3.setToggleGroup(group);
+
+        RadioButton rb4 = new RadioButton("Filetype: .png");
+        rb4.setToggleGroup(group);
+
+
+        lefCol.getChildren().addAll(leftColLabel, rb1, rb2, rb3, rb4);
         VBox rightCol = new VBox();
 
         rightCol.getChildren().addAll();
         optionMenu.getChildren().addAll(lefCol, rightCol);
+        optionMenu.setMargin(lefCol, new Insets(5,5,5,5));
+
 
 
         /**
